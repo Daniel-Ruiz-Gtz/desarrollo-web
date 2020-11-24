@@ -1,26 +1,29 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Desarrollo Web</title>
-</head>
-<body>
-    <a href="{{ route('grabacion.index') }}">Listado de Grabaciones</a>
-    <a href="{{ route('grabacion.edit', [$grabacion->id]) }}">Editar Grabación</a>
+@extends('layouts.tabler')
 
-    <form action="{{ route('grabacion.destroy', [$grabacion]) }}" method="POST">
-        @method('DELETE')
-        @csrf
-        <button type="submit">Eliminar</button>
-    </form>
+@section('content')
+<div class="page-header">
+    <h1 class="page-title">
+        Grabación # {{ $grabacion->id }}
+    </h1>
+</div>
 
-    <hr>
-    <h1>Grabación # {{ $grabacion->id }}</h1>
-    <ul>
-        <li>Fecha: {{ $grabacion->fecha }}</li>
-        <li>Tema: {{ $grabacion->tema }}</li>
-        <li>Observaciones: {{ $grabacion->observaciones }}</li>
-        <li>Enlace: {{ $grabacion->enlace }}</li>
-    </ul>
-</body>
-</html>
+<div class="row">
+    <div class="col-12 col-md-10">
+        <ul>
+            <li>Fecha: {{ $grabacion->fecha }}</li>
+            <li>Tema: {{ $grabacion->tema }}</li>
+            <li>Observaciones: {{ $grabacion->observaciones }}</li>
+            <li>Enlace: {{ $grabacion->enlace }}</li>
+        </ul>
+    </div>
+    <div class="col-12 col-md-2">
+        <a class="btn btn-primary" href="{{ route('grabacion.index') }}">Listado de Grabaciones</a>
+        <a class="btn btn-warning" href="{{ route('grabacion.edit', [$grabacion->id]) }}">Editar Grabación</a>
+        <form action="{{ route('grabacion.destroy', [$grabacion]) }}" method="POST">
+            @method('DELETE')
+            @csrf
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+        </form>
+    </div>
+</div>
+@endsection
