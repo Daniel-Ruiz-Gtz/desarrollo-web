@@ -1,14 +1,19 @@
 @extends('layouts.tabler')
 
 @section('content')
-
-<div class="page-header">
-    <h1 class="page-title">Listado de Grabaciones</h1>
-</div>
+<ol class="breadcrumb" aria-label="breadcrumbs">
+    <li class="breadcrumb-item active"><a href="{{ route('grabacion.index') }}">Grabaciones</a></li>
+</ol>
 
 <div class="row">
-    <div class="col-12 col-md-10">
+    <div class="col-12">
         <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Grabaciones</h3>
+                <div class="card-options">
+                    <a href="{{ route('grabacion.create') }}" class="btn btn-sm btn-primary">Nueva Grabación</a>
+                </div>
+            </div>
             <div class="table-responsive">
                 <table class="table table-hover table-outline">
                     <tr>
@@ -30,9 +35,6 @@
                 </table>
             </div>
         </div>
-    </div>
-    <div class="col-12 col-md-2">
-        <a href="{{ route('grabacion.create') }}" class="btn btn-blue">Nueva Grabación</a>
     </div>
 </div>
 

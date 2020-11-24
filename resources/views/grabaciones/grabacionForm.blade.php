@@ -1,9 +1,13 @@
 @extends('layouts.tabler')
 
 @section('content')
+<ol class="breadcrumb" aria-label="breadcrumbs">
+    <li class="breadcrumb-item"><a href="{{ route('grabacion.index') }}">Grabaciones</a></li>
+    <li class="breadcrumb-item active" aria-current="page"><a href="#">{{ isset($grabacion) ? 'Editar' : 'Crear' }}</a></li>
+</ol>
 
 <div class="row">
-    <div class="col-12">
+    <div class="col-8 offset-2">
 
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -23,10 +27,10 @@
         @endif
 
             <div class="card-header">
-                <h3 class="card-title">Formulario de Grabación</h3>
+                <h3 class="card-title">{{ isset($grabacion) ? 'Editar' : 'Crear' }} Grabación</h3>
             </div>
 
-            <div class="card-body col-6">
+            <div class="card-body">
                 @csrf
 
                 <div class="form-group">
@@ -49,9 +53,9 @@
                     <input class="form-control" type="text" name="enlace" value="{{ old('enlace') ?? $grabacion->enlace ?? '' }}">
                 </div>
             </div>
-            <div class="card-footer text-right">
+            <div class="card-footer">
                 <div class="d-flex">
-                  <button type="submit" class="btn btn-primary ml-auto">Aceptar</button>
+                  <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
             </div>
         </form>
