@@ -9,15 +9,7 @@
 <div class="row">
     <div class="col-8 offset-2">
 
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+
 
         @if(isset($grabacion))
             <form action="{{ route('grabacion.update', [$grabacion]) }}" method="POST" class="card">
@@ -29,6 +21,16 @@
             <div class="card-header">
                 <h3 class="card-title">{{ isset($grabacion) ? 'Editar' : 'Crear' }} Grabación</h3>
             </div>
+
+            @if ($errors->any())
+                <div class="card-alert alert alert-warning mb-0">
+                    <ul class="m-0">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
             <div class="card-body">
                 @csrf
