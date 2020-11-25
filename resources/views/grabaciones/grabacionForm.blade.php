@@ -8,14 +8,10 @@
 
 <div class="row">
     <div class="col-8 offset-2">
-
-
-
         @if(isset($grabacion))
-            <form action="{{ route('grabacion.update', [$grabacion]) }}" method="POST" class="card">
-            @method('patch')
+            {!! Form::model($grabacion, ['route' => ['grabacion.update', $grabacion->id], 'method' => 'PATCH', 'class' => 'card']) !!}
         @else
-            <form action="{{ route('grabacion.store') }}" method="POST" class="card">
+            {!! Form::open(['route' => 'grabacion.store', 'class' => 'card']) !!}
         @endif
 
             <div class="card-header">
@@ -25,34 +21,32 @@
             @include('partials.form-error')
 
             <div class="card-body">
-                @csrf
-
                 <div class="form-group">
-                    <label class="form-label" for="fecha">Fecha:</label>
-                    <input class="form-control" type="date" name="fecha" value="{{ old('fecha') ?? $grabacion->fecha ?? '' }}">
+                    {!! Form::label('fecha', 'Fecha:', ['class' => 'form-label']) !!}
+                    {!! Form::date('fecha', null, ['class' => 'form-control']) !!}
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label" for="tema">Tema:</label>
-                    <input class="form-control" type="text" name="tema" value="{{ old('tema') ?? $grabacion->tema ?? '' }}">
+                    {!! Form::label('tema', 'Tema:', ['class' => 'form-label']) !!}
+                    {!! Form::text('tema', null, ['class' => 'form-control']) !!}
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label" for="observaciones">Observaciones:</label>
-                    <textarea class="form-control" name="observaciones">{{ old('observaciones') ?? $grabacion->observaciones ?? '' }}</textarea>
+                    {!! Form::label('observaciones', 'Observaciones:', ['class' => 'form-label']) !!}
+                    {!! Form::textarea('observaciones', null, ['class' => 'form-control', 'rows' => '3']) !!}
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label" for="enlace">Enlace:</label>
-                    <input class="form-control" type="text" name="enlace" value="{{ old('enlace') ?? $grabacion->enlace ?? '' }}">
+                    {!! Form::label('enlace', 'Enlace:', ['class' => 'form-label']) !!}
+                    {!! Form::text('enlace', null, ['class' => 'form-control']) !!}
                 </div>
             </div>
             <div class="card-footer">
                 <div class="d-flex">
-                  <button type="submit" class="btn btn-primary">Guardar</button>
+                    {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
                 </div>
             </div>
-        </form>
+        {!! Form::close() !!}
     </div>
 </div>
 
