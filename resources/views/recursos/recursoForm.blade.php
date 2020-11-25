@@ -22,11 +22,7 @@
             <div class="card-body">
                 <div class="form-group">
                     {!! Form::label('categoria_id', 'Categoría:', ['class' => 'form-label']) !!}
-                    <select name="categoria_id" class="form-control">
-                        @foreach ($categorias as $categoria)
-                            <option value="{{ $categoria->id }}">{{ $categoria->categoria }}</option>
-                        @endforeach
-                    </select>
+                    {!! Form::select('categoria_id', $categorias, null, ['class' => 'form-control']) !!}
                 </div>
 
                 <div class="form-group">

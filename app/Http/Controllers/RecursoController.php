@@ -27,7 +27,7 @@ class RecursoController extends Controller
      */
     public function create()
     {
-        $categorias = Categoria::all();
+        $categorias = Categoria::pluck('categoria', 'id')->toArray();
         return view('recursos.recursoForm', compact('categorias'));
     }
 
@@ -68,7 +68,8 @@ class RecursoController extends Controller
      */
     public function edit(Recurso $recurso)
     {
-        //
+        $categorias = Categoria::pluck('categoria', 'id')->toArray();
+        return view('recursos.recursoForm', compact('categorias', 'recurso'));
     }
 
     /**
@@ -80,7 +81,13 @@ class RecursoController extends Controller
      */
     public function update(Request $request, Recurso $recurso)
     {
-        //
+        $recurso->categoria_id = $request->categoria_id;
+        $recurso->url = $request->url;
+        $recurso->titulo = $request->titulo;
+        $recurso->descripcion = $request->descripcion;
+        $recurso->save();
+
+        return redirect()->route('recurso.index');
     }
 
     /**
