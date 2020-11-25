@@ -40,6 +40,11 @@
                     {!! Form::label('enlace', 'Enlace:', ['class' => 'form-label']) !!}
                     {!! Form::text('enlace', null, ['class' => 'form-control']) !!}
                 </div>
+
+                <div class="form-group">
+                    {!! Form::label('tema_id[]', 'Temas:', ['class' => 'form-label']) !!}
+                    {!! Form::select('tema_id[]', $temas, isset($grabacion) ? $grabacion->temas()->pluck('id') : null, ['class' => 'form-control', 'multiple' => 'multiple']) !!}
+                </div>
             </div>
             <div class="card-footer">
                 <div class="d-flex">
