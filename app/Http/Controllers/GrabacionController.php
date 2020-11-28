@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Grabacion;
+use App\Models\Tema;
 use Illuminate\Http\Request;
 
 class GrabacionController extends Controller
@@ -26,7 +27,8 @@ class GrabacionController extends Controller
      */
     public function create()
     {
-        return view('grabaciones.grabacionForm');
+        $temas = Tema::pluck('tema', 'id')->toArray();
+        return view('grabaciones.grabacionForm', compact('temas'));
     }
 
     /**
@@ -43,7 +45,9 @@ class GrabacionController extends Controller
             'enlace' => 'required|url',
         ]);
 
-        Grabacion::create($request->all());
+        $grabacion = Grabacion::create($request->all());
+
+        $grabacion->temas()->attach($request->tema_id);
 
         return redirect()->route('grabacion.index');
     }
@@ -67,7 +71,8 @@ class GrabacionController extends Controller
      */
     public function edit(Grabacion $grabacion)
     {
-        return view('grabaciones.grabacionForm', compact('grabacion'));
+        $temas = Tema::pluck('tema', 'id')->toArray();
+        return view('grabaciones.grabacionForm', compact('grabacion', 'temas'));
     }
 
     /**
@@ -86,7 +91,9 @@ class GrabacionController extends Controller
         ]);
 
         Grabacion::where('id', $grabacion->id)
-            ->update($request->except('_method', '_token'));
+            ->update($request->except('_method', '_token', 'tema_id'));
+
+        $grabacion->temas()->sync($request->tema_id);
 
         return redirect()->route('grabacion.show', [$grabacion]);
     }

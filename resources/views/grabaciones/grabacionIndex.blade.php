@@ -21,6 +21,7 @@
                         <th>Fecha</th>
                         <th>Tema</th>
                         <th>Enlace</th>
+                        <th>Temas</th>
                     </tr>
                     @foreach ($grabaciones as $grabacion)
                         <tr>
@@ -30,6 +31,11 @@
                                 <a href="{{ route('grabacion.show', [$grabacion]) }}">{{ $grabacion->tema }}</a>
                             </td>
                             <td>{{ $grabacion->enlace }}</td>
+                            <td>
+                                @foreach ($grabacion->temas as $tema)
+                                    {{ $tema->tema }} <br>
+                                @endforeach
+                            </td>
                         </tr>
                     @endforeach
                 </table>

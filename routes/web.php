@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\AlumnoController;
+use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\GrabacionController;
+use App\Http\Controllers\RecursoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,3 +30,7 @@ Route::resource('grabacion', GrabacionController::class);
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::resource('alumno', AlumnoController::class);
+Route::resource('recurso', RecursoController::class);
+Route::resource('categoria', CategoriaController::class);
