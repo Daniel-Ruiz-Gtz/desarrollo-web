@@ -30,4 +30,22 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
         ];
     }
+
+    public function alumno()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'tipo' => 'Alumno',
+            ];
+        });
+    }
+
+    public function administrador()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'tipo' => 'Admin',
+            ];
+        });
+    }
 }
