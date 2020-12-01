@@ -15,7 +15,7 @@ class RecursoController extends Controller
      */
     public function index()
     {
-        $recursos = Recurso::all();
+        $recursos = Recurso::with('categoria')->get();
 
         return view('recursos.recursoIndex', compact('recursos'));
     }

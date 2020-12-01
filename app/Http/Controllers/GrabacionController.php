@@ -15,7 +15,7 @@ class GrabacionController extends Controller
      */
     public function index()
     {
-        $grabaciones = Grabacion::all();
+        $grabaciones = Grabacion::with('temas')->get();
 
         return view('grabaciones.grabacionIndex', compact('grabaciones'));
     }
