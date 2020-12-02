@@ -8,7 +8,7 @@
 </ol>
 
 <div class="row">
-    <div class="col-8 offset-2">
+    <div class="col-9">
         <div class="card">
             {{--<a href="#"><img class="card-img-top" src="#" alt="And this isn&#39;t my nose. This is a false one."></a>--}}
             <div class="card-body d-flex flex-column">
@@ -37,7 +37,29 @@
                             <button type="submit" class="btn btn-outline-danger">Eliminar</button>
                         </form>
                     </div>
+                    <div class="col-8 text-right">
+                        Calificaciones:
+                        @foreach ($grabacion->users as $data)
+                            {{ $data->pivot->calificacion }}<br />
+                        @endforeach
+                    </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Calificar -->
+    <div class="col-3">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Califica esta grabación</h3>
+            </div>
+            <div class="card-body">
+                {!! Form::open(['route' => ['grabacion.calificar', $grabacion->id]]) !!}
+                    {!! Form::label('calificacion', 'Califica del 1 al 5:', ['class' => 'form-label']) !!}
+                    {!! Form::number('calificacion', null, ['class' => 'form-control', 'min' => '1', 'max' => '5', 'step' => '1']) !!}
+                    {!! Form::submit('Guardar', ['class' => 'btn btn-primary btn-sm']) !!}
+                {!! Form::close() !!}
             </div>
         </div>
     </div>

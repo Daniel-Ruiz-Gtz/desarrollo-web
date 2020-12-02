@@ -109,4 +109,10 @@ class GrabacionController extends Controller
         $grabacion->delete();
         return redirect()->route('grabacion.index');
     }
+
+    public function calificar(Request $request, Grabacion $grabacion)
+    {
+        $grabacion->users()->attach(\Auth::id(), ['calificacion' => $request->calificacion]);
+        return redirect()->route('grabacion.show', $grabacion->id);
+    }
 }

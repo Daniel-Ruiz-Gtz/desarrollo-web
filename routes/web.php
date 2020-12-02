@@ -25,7 +25,6 @@ Route::get('/inicio', function () {
     return view('inicio');
 });
 
-Route::resource('grabacion', GrabacionController::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -35,4 +34,7 @@ Route::middleware('auth')->group(function() {
     Route::resource('alumno', AlumnoController::class);
     Route::resource('recurso', RecursoController::class);
     Route::resource('categoria', CategoriaController::class);
+
+    Route::post('grabacion/calificar/{grabacion}', [GrabacionController::class, 'calificar'])->name('grabacion.calificar');
+    Route::resource('grabacion', GrabacionController::class);
 });

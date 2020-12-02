@@ -15,4 +15,9 @@ class Grabacion extends Model
     {
         return $this->belongsToMany(Tema::class);
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class)->withPivot('calificacion');
+    }
 }

@@ -64,4 +64,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Alumno::class);
     }
+
+    public function grabaciones()
+    {
+        return $this->belongsToMany(Grabacion::class)->withPivot('calificacion');
+    }
 }
