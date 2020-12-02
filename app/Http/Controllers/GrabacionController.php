@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Grabacion;
 use App\Models\Tema;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class GrabacionController extends Controller
 {
@@ -71,6 +72,8 @@ class GrabacionController extends Controller
      */
     public function edit(Grabacion $grabacion)
     {
+        Gate::authorize('admin');
+
         $temas = Tema::pluck('tema', 'id')->toArray();
         return view('grabaciones.grabacionForm', compact('grabacion', 'temas'));
     }

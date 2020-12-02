@@ -27,16 +27,18 @@
             </div>
             <div class="card-footer">
                 <div class="row">
-                    <div class="col-1">
-                        <a class="btn btn-outline-warning" href="{{ route('grabacion.edit', [$grabacion->id]) }}">Editar</a>
-                    </div>
-                    <div class="col-1">
-                        <form action="{{ route('grabacion.destroy', [$grabacion]) }}" method="POST">
-                            @method('DELETE')
-                            @csrf
-                            <button type="submit" class="btn btn-outline-danger">Eliminar</button>
-                        </form>
-                    </div>
+                    @can('admin')
+                        <div class="col-1">
+                            <a class="btn btn-outline-warning" href="{{ route('grabacion.edit', [$grabacion->id]) }}">Editar</a>
+                        </div>
+                        <div class="col-1">
+                            <form action="{{ route('grabacion.destroy', [$grabacion]) }}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit" class="btn btn-outline-danger">Eliminar</button>
+                            </form>
+                        </div>
+                    @endcan
                     <div class="col-8 text-right">
                         Calificaciones:
                         @foreach ($grabacion->users as $data)
