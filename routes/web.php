@@ -31,6 +31,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::resource('alumno', AlumnoController::class);
-Route::resource('recurso', RecursoController::class);
-Route::resource('categoria', CategoriaController::class);
+Route::middleware('auth')->group(function() {
+    Route::resource('alumno', AlumnoController::class);
+    Route::resource('recurso', RecursoController::class);
+    Route::resource('categoria', CategoriaController::class);
+});
