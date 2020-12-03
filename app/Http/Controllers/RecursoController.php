@@ -41,6 +41,7 @@ class RecursoController extends Controller
     {
         $recurso = new Recurso();
         $recurso->categoria_id = $request->categoria_id;
+        $recurso->user_id = \Auth::id();
         $recurso->url = $request->url;
         $recurso->titulo = $request->titulo;
         $recurso->descripcion = $request->descripcion;
@@ -85,6 +86,7 @@ class RecursoController extends Controller
         $recurso->url = $request->url;
         $recurso->titulo = $request->titulo;
         $recurso->descripcion = $request->descripcion;
+        $recurso->aprovado = $request->aprovado ?? 0;
         $recurso->save();
 
         return redirect()->route('recurso.index');

@@ -22,6 +22,7 @@
                             <th>URL</th>
                             <th>Titulo</th>
                             <th>Categoria</th>
+                            <th>Aprovado</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -32,6 +33,7 @@
                                 <td>{{ $recurso->url }}</td>
                                 <td>{{ $recurso->titulo }}</td>
                                 <td>{{ $recurso->categoria->categoria }}</td>
+                                <td>{{ $recurso->aprovado == 1 ? 'Aprovado' : '' }}</td>
                                 <td>
                                     <a href="{{ route('recurso.edit', $recurso->id) }}" class="btn btn-sm btn-warning">Editar</a>
                                 </td>

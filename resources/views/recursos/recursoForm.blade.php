@@ -39,6 +39,14 @@
                     {!! Form::label('descripcion', 'Descripción:', ['class' => 'form-label']) !!}
                     {!! Form::textarea('descripcion', null, ['class' => 'form-control', 'rows' => '3']) !!}
                 </div>
+
+                <div class="form-group">
+                    <label class="custom-control custom-checkbox">
+                        {!! Form::checkbox('aprovado', 1, null, ['class' => 'custom-control-input']) !!}
+                        <span class="custom-control-label">Aprovado para su publicación</span>
+                        {{-- Utilizar span en lugar de label no me parece lo mejor, pero así estaba descrito en el tema --}}
+                      </label>
+                </div>
             </div>
             <div class="card-footer">
                 <div class="d-flex">

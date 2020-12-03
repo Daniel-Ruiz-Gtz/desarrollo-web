@@ -16,9 +16,11 @@ class CreateRecursosTable extends Migration
         Schema::create('recursos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('categoria_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->string('url');
             $table->string('titulo');
             $table->text('descripcion')->nullable();
+            $table->boolean('aprovado')->default(0);
             $table->timestamps();
         });
     }
