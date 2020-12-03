@@ -69,4 +69,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Grabacion::class)->withPivot('calificacion');
     }
+
+    public function recursos()
+    {
+        return $this->hasMany(Recurso::class);
+    }
 }
