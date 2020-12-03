@@ -10,9 +10,11 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Recursos</h3>
-                <div class="card-options">
-                    <a href="{{ route('recurso.create') }}" class="btn btn-sm btn-primary">Nuevo Recurso</a>
-                </div>
+                @can('create', App\Models\Recurso::class)
+                    <div class="card-options">
+                        <a href="{{ route('recurso.create') }}" class="btn btn-sm btn-primary">Nuevo Recurso</a>
+                    </div>
+                @endcan
             </div>
             <div class="table-responsive">
                 <table class="table table-hover table-outline">
@@ -35,7 +37,11 @@
                                 <td>{{ $recurso->categoria->categoria }}</td>
                                 <td>{{ $recurso->aprovado == 1 ? 'Aprovado' : '' }}</td>
                                 <td>
-                                    <a href="{{ route('recurso.edit', $recurso->id) }}" class="btn btn-sm btn-warning">Editar</a>
+                                    @can('update', $recurso)
+                                        <a href="{{ route('recurso.edit', $recurso->id) }}" class="btn btn-sm btn-warning">Editar</a>
+                                    @else
+                                        Hecho por: {{ $recurso->user->email }}
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach

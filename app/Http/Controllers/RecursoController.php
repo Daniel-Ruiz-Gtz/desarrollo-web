@@ -27,6 +27,7 @@ class RecursoController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Recurso::class);
         $categorias = Categoria::pluck('categoria', 'id')->toArray();
         return view('recursos.recursoForm', compact('categorias'));
     }
@@ -69,6 +70,7 @@ class RecursoController extends Controller
      */
     public function edit(Recurso $recurso)
     {
+        $this->authorize('update', $recurso);
         $categorias = Categoria::pluck('categoria', 'id')->toArray();
         return view('recursos.recursoForm', compact('categorias', 'recurso'));
     }
