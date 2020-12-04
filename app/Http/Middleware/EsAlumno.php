@@ -16,8 +16,9 @@ class EsAlumno
      */
     public function handle(Request $request, Closure $next)
     {
-        if (\Auth::user()->tipo == 'Alumno') {
-            return redirect()->back()->with(['mensaje' => 'No tiene acceso a esta sección']);
+        if (\Auth::user()->tipo != 'Alumno') {
+            return redirect()->back()
+                ->with(['mensaje' => 'No tiene acceso a esta sección', 'alert-type' => 'alert-danger']);
         }
 
         return $next($request);

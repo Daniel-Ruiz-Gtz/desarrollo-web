@@ -48,7 +48,11 @@ class RecursoController extends Controller
         $recurso->descripcion = $request->descripcion;
         $recurso->save();
 
-        return redirect()->route('recurso.index');
+        return redirect()->route('recurso.index')
+            ->with([
+                'mensaje' => 'Recurso creado con éxito',
+                'alert-type' => 'alert-success',
+            ]);
     }
 
     /**
@@ -91,7 +95,11 @@ class RecursoController extends Controller
         $recurso->aprovado = $request->aprovado ?? 0;
         $recurso->save();
 
-        return redirect()->route('recurso.index');
+        return redirect()->route('recurso.index')
+            ->with([
+                'mensaje' => 'Recurso actualizado con éxito',
+                'alert-type' => 'alert-success',
+            ]);
     }
 
     /**
